@@ -640,3 +640,55 @@
   }
 }
 
+/* Quality Lab is a review instrument, not another catalog grid. The slate
+   field and amber status language visually separate protocol from discovery. */
+.lab {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 58px max(28px, calc((100% - 1400px) / 2)) 104px;
+  background:
+    radial-gradient(circle at 82% 7%, rgba(8, 127, 114, 0.12), transparent 25rem),
+    linear-gradient(135deg, #e7eff1 0%, #f7f5ef 54%, #f5ecdf 100%);
+}
+
+.protocolRail {
+  display: grid;
+  align-items: center;
+  margin-top: 25px;
+  padding: 15px 17px;
+  border: 1px solid rgba(24, 44, 49, 0.18);
+  border-radius: 14px;
+  background: rgba(21, 42, 48, 0.94);
+  color: #ecf4f2;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.6fr) auto;
+  gap: 25px;
+  box-shadow: 0 16px 30px rgba(24, 44, 49, 0.12);
+}
+
+.protocolIntro .kicker { color: #9ad3ca; }
+.protocolIntro h2 { margin: 4px 0 0; color: white; font-size: 1.08rem; letter-spacing: -0.03em; }
+.protocolIntro p { margin: 5px 0 0; color: #b8c8c7; font-size: 0.65rem; line-height: 1.5; }
+.protocolRail ol { display: grid; min-width: 0; margin: 0; padding: 0; list-style: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.protocolRail li { display: flex; align-items: center; min-width: 0; padding: 8px 9px; border: 1px solid rgba(181, 217, 210, 0.19); border-radius: 8px; gap: 9px; }
+.protocolRail li > span { color: #8dcac0; font-family: var(--font-mono, monospace); font-size: 0.57rem; }
+.protocolRail li strong { display: block; color: #f3f8f7; font-size: 0.67rem; }
+.protocolRail li small { display: block; margin-top: 2px; color: #adc0be; font-size: 0.55rem; }
+.protocolStatus { padding: 6px 7px; border: 1px solid rgba(221, 180, 111, 0.44); border-radius: 6px; color: #f6d5a2; font-family: var(--font-mono, monospace); font-size: 0.54rem; font-weight: 700; text-transform: uppercase; }
+
+.triageFilters { display: flex; flex-wrap: wrap; align-items: center; margin-top: 13px; gap: 5px; }
+.triageFilters > span { margin-right: 3px; color: var(--lab-muted); font-family: var(--font-mono, monospace); font-size: 0.55rem; text-transform: uppercase; }
+.triageFilters button { padding: 4px 7px; border: 1px solid var(--lab-line); border-radius: 999px; background: var(--lab-paper); color: var(--lab-muted); cursor: not-allowed; font-family: var(--font-mono, monospace); font-size: 0.53rem; }
+.triageFilters button:disabled { opacity: 1; }
+.triageFilters .triageActive { border-color: rgba(168, 104, 22, 0.36); background: var(--lab-amber-wash); color: #84540f; }
+
+@media (max-width: 960px) {
+  .lab { padding-inline: 22px; }
+  .protocolRail { grid-template-columns: 1fr; gap: 14px; }
+  .protocolStatus { justify-self: start; }
+}
+
+@media (max-width: 680px) {
+  .lab { width: 100%; padding-inline: 14px; }
+  .protocolRail ol { grid-template-columns: 1fr; }
+}

@@ -118,6 +118,11 @@ const labels = {
     context: "Context",
     contextText:
       "Inspired by collection and pack patterns: a bundle is a citable research object, not a one-click trust signal.",
+    canvasLabel: "Composition canvas",
+    manifestTitle: "Bundle manifest",
+    manifestHint: "A structured hand-off for a future execution layer.",
+    manifestState: "Local state only",
+    manifestRows: ["3 stages", "Inspectable metadata", "No execution"],
   },
   zh: {
     eyebrow: "方案 04 · 组合工作台",
@@ -150,6 +155,11 @@ const labels = {
     type: "类型",
     context: "设计语境",
     contextText: "参考 collection 与 pack 模式：组件包是可引用的研究对象，不是一步到位的信任背书。",
+    canvasLabel: "组合画布",
+    manifestTitle: "组件包清单",
+    manifestHint: "为未来执行层准备的结构化交接信息。",
+    manifestState: "仅本地状态",
+    manifestRows: ["3 个阶段", "可检查元数据", "不会执行"],
   },
 } as const;
 
@@ -183,6 +193,11 @@ type Labels = {
   type: string;
   context: string;
   contextText: string;
+  canvasLabel: string;
+  manifestTitle: string;
+  manifestHint: string;
+  manifestState: string;
+  manifestRows: readonly string[];
 };
 
 function shortName(entry: CatalogEntry): string {
@@ -368,19 +383,32 @@ export function CompositionStudio({ catalog, locale }: CompositionStudioProps) {
           ))}
         </div>
 
-        <div className={styles.componentGrid}>
-          {pipeline.map((entry, index) => (
-            <ComponentCard
-              copy={copy}
-              entry={entry}
-              index={index}
-              key={entry.id}
-              onToggle={() => toggleEntry(entry.id)}
-              selected={selectedIds.includes(entry.id)}
-              stage={stages[index] ?? stages[stages.length - 1]}
-            />
-          ))}
-          {pipeline.length === 0 && <p className={styles.emptyState}>No components available in this fixture.</p>}
+        <div className={styles.canvasLayout}>
+          <aside className={styles.workflowManifest} aria-label={copy.manifestTitle}>
+            <div className={styles.manifestMark}><GitBranch size={16} aria-hidden="true" /></div>
+            <span className={styles.kicker}>{copy.canvasLabel}</span>
+            <h3>{copy.manifestTitle}</h3>
+            <p>{copy.manifestHint}</p>
+            <dl>
+              <div><dt>{copy.manifestState}</dt><dd>{selectedIds.length}/{pipeline.length}</dd></div>
+              {copy.manifestRows.map((row) => <div key={row}><dt>{row}</dt><dd>—</dd></div>)}
+            </dl>
+            <span className={styles.manifestNote}>{copy.noExecution}</span>
+          </aside>
+          <div className={styles.componentGrid}>
+            {pipeline.map((entry, index) => (
+              <ComponentCard
+                copy={copy}
+                entry={entry}
+                index={index}
+                key={entry.id}
+                onToggle={() => toggleEntry(entry.id)}
+                selected={selectedIds.includes(entry.id)}
+                stage={stages[index] ?? stages[stages.length - 1]}
+              />
+            ))}
+            {pipeline.length === 0 && <p className={styles.emptyState}>No components available in this fixture.</p>}
+          </div>
         </div>
       </section>
 

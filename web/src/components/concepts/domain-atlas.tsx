@@ -117,6 +117,11 @@ const copy = {
     futureBody: "Ontology edges and saved domain views can become URL-shareable filters once the index is connected.",
     ontologyKicker: "02 / Ontology",
     metadataKicker: "03 / Metadata",
+    navigationTitle: "Explore by domain",
+    navigationHint: "A domain-first route through the catalog.",
+    activeLens: "Active lens",
+    coverageModel: "Fixture coverage",
+    railNote: "Domain controls are prototype affordances. Connected data will make these filters shareable.",
   },
   zh: {
     eyebrow: "方案 B · 参考 SkillNet 的本体视图",
@@ -149,6 +154,11 @@ const copy = {
     futureBody: "接入真实索引后，可把本体关系与保存的领域视图转为可分享的 URL 筛选状态。",
     ontologyKicker: "02 / 本体切片",
     metadataKicker: "03 / 元数据",
+    navigationTitle: "按领域探索",
+    navigationHint: "从领域进入组件索引。",
+    activeLens: "当前视角",
+    coverageModel: "Fixture 覆盖",
+    railNote: "领域控件目前是原型入口；接入真实数据后可保存和分享筛选状态。",
   },
 } as const;
 
@@ -250,15 +260,34 @@ export function DomainAtlas({ catalog, locale = "en" }: DomainAtlasProps) {
         </div>
       </div>
 
-      <div className={styles.sectionHeader}>
-        <div>
-          <span className={styles.sectionKicker}>01 / {locale === "zh" ? "领域入口" : "Domain entry points"}</span>
-          <h2>{text.domainHeading}</h2>
-        </div>
-        <p>{text.domainNote}</p>
-      </div>
+      <section className={styles.explorationFrame} aria-label={text.navigationTitle}>
+        <nav className={styles.domainRail} aria-label={text.navigationTitle}>
+          <div className={styles.domainRailHeading}>
+            <span className={styles.sectionKicker}>01 / {text.activeLens}</span>
+            <h2>{text.navigationTitle}</h2>
+            <p>{text.navigationHint}</p>
+          </div>
+          <div className={styles.domainRailList}>
+            {domains.map((domain, index) => (
+              <button type="button" className={`${styles.domainRailItem} ${index === 0 ? styles.domainRailItemActive : ""}`} key={domain.id} disabled aria-pressed={index === 0}>
+                <span className={`${styles.domainRailDot} ${styles[`domainRailDot${domain.color}`]}`} aria-hidden="true" />
+                <span>{locale === "zh" ? domain.labelZh : domain.label}</span>
+                <small>{domain.entries.length} {text.entries}</small>
+              </button>
+            ))}
+          </div>
+          <p className={styles.domainRailNote}>{text.railNote}</p>
+        </nav>
+        <div className={styles.domainColumn}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <span className={styles.sectionKicker}>02 / {locale === "zh" ? "领域覆盖" : "Domain coverage"}</span>
+              <h2>{text.domainHeading}</h2>
+            </div>
+            <p>{text.domainNote}</p>
+          </div>
 
-      <div className={styles.domainGrid}>
+          <div className={styles.domainGrid}>
         {domains.map((domain, index) => {
           const leadingEntries = [...domain.entries]
             .sort((a, b) => b.stars - a.stars || a.fullName.localeCompare(b.fullName))
@@ -291,8 +320,10 @@ export function DomainAtlas({ catalog, locale = "en" }: DomainAtlasProps) {
               </div>
             </article>
           );
-        })}
-      </div>
+          })}
+          </div>
+        </div>
+      </section>
 
       <div className={styles.ontologyLayout}>
         <section className={styles.ontologyPanel} aria-labelledby="ontology-slice-title">
@@ -335,7 +366,7 @@ export function DomainAtlas({ catalog, locale = "en" }: DomainAtlasProps) {
 
         <aside className={styles.metadataPanel} aria-labelledby="metadata-affordance-title">
           <div className={styles.metadataIcon} aria-hidden="true"><BookOpen size={20} /></div>
-          <span className={styles.sectionKicker}>{text.metadataKicker}</span>
+          <span className={styles.sectionKicker}>{text.metadataKicker} · {text.coverageModel}</span>
           <h2 id="metadata-affordance-title">{text.metadataHeading}</h2>
           <p>{text.metadataBody}</p>
           <dl className={styles.metadataStats}>

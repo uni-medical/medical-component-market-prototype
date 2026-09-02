@@ -61,6 +61,11 @@ type Copy = {
   reviewKicker: string;
   evaluationKicker: string;
   auditKicker: string;
+  protocolTitle: string;
+  protocolHint: string;
+  protocolSteps: readonly { title: string; detail: string }[];
+  triageLabel: string;
+  triageStates: readonly string[];
 };
 
 const COPY: Record<Locale, Copy> = {
@@ -131,9 +136,18 @@ const COPY: Record<Locale, Copy> = {
     fieldLegend: "Derived from fixture fields · no hidden score",
     emptyQueue: "No candidate records in the current fixture.",
     summaryLabel: "Quality lab summary",
-    reviewKicker: "01 / review queue",
-    evaluationKicker: "02 / evaluation design",
-    auditKicker: "03 / audit note",
+    reviewKicker: "02 / review queue",
+    evaluationKicker: "03 / evaluation design",
+    auditKicker: "04 / audit note",
+    protocolTitle: "Review protocol",
+    protocolHint: "A proposed human-in-the-loop sequence, shown before any score exists.",
+    protocolSteps: [
+      { title: "Intake", detail: "Check identity and source" },
+      { title: "Evidence", detail: "Inspect public fields" },
+      { title: "Decision", detail: "Record a review outcome" },
+    ],
+    triageLabel: "Triage lens",
+    triageStates: ["Candidate", "Missing fields", "Stable"],
   },
   zh: {
     eyebrow: "方案 C · 质控工作台",
@@ -202,9 +216,18 @@ const COPY: Record<Locale, Copy> = {
     fieldLegend: "由 fixture 字段推导 · 不含隐藏分数",
     emptyQueue: "当前 fixture 中没有候选条目。",
     summaryLabel: "质控实验台摘要",
-    reviewKicker: "01 / 评审队列",
-    evaluationKicker: "02 / 评估设计",
-    auditKicker: "03 / 审计说明",
+    reviewKicker: "02 / 评审队列",
+    evaluationKicker: "03 / 评估设计",
+    auditKicker: "04 / 审计说明",
+    protocolTitle: "评审协议",
+    protocolHint: "先展示拟议的人工评审流程；正式评分尚未建立。",
+    protocolSteps: [
+      { title: "接收", detail: "核对身份与来源" },
+      { title: "证据", detail: "检查公开字段" },
+      { title: "决定", detail: "记录评审结果" },
+    ],
+    triageLabel: "分流视角",
+    triageStates: ["候选层", "缺少字段", "稳定层"],
   },
 };
 
@@ -338,14 +361,35 @@ export function QualityLab({ catalog, locale }: QualityLabProps) {
         />
       </dl>
 
+      <section className={styles.protocolRail} aria-labelledby="review-protocol-title">
+        <div className={styles.protocolIntro}>
+          <span className={styles.kicker}>01 / protocol</span>
+          <h2 id="review-protocol-title">{copy.protocolTitle}</h2>
+          <p>{copy.protocolHint}</p>
+        </div>
+        <ol>
+          {copy.protocolSteps.map((step, index) => (
+            <li key={step.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div><strong>{step.title}</strong><small>{step.detail}</small></div>
+            </li>
+          ))}
+        </ol>
+        <span className={styles.protocolStatus}>{copy.notEvaluated}</span>
+      </section>
+
       <section className={styles.dashboard}>
         <div className={styles.queuePanel}>
           <div className={styles.sectionHeader}>
-            <div>
-              <span className={styles.kicker}>{copy.reviewKicker}</span>
-              <h2>{copy.reviewTitle}</h2>
-              <p>{copy.reviewSubtitle}</p>
-            </div>
+              <div>
+                <span className={styles.kicker}>{copy.reviewKicker}</span>
+                <h2>{copy.reviewTitle}</h2>
+                <p>{copy.reviewSubtitle}</p>
+                <div className={styles.triageFilters} aria-label={copy.triageLabel}>
+                  <span>{copy.triageLabel}</span>
+                  {copy.triageStates.map((state, index) => <button type="button" key={state} disabled className={index === 0 ? styles.triageActive : ""}>{state}</button>)}
+                </div>
+              </div>
             <span className={styles.queueCount}>{reviewQueue.length.toString().padStart(2, "0")}</span>
           </div>
           <div className={styles.queueList}>
