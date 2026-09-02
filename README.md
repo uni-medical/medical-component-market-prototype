@@ -1,5 +1,7 @@
 <!-- LOCKED: false -->
 
+> **Standalone deployment repository.** This repository hosts the current Medical Component Market frontend prototype on GitHub Pages. The deployable app lives in [`web/`](./web/), the four concept meanings are documented in [`docs/concepts.md`](./docs/concepts.md), and the Pages workflow is [`deploy-pages-prototype.yml`](./.github/workflows/deploy-pages-prototype.yml). The static site is built from `main`; the historical ecosystem catalog below is retained as source context only.
+
 # Awesome DSH Med Plugin Ecosystem
 
 Purpose: maintain a rule-based, reviewable candidate directory spanning the DeepSeek Harness (DSH) plugin ecosystem, medical AI components, and reusable general Agent infrastructure.

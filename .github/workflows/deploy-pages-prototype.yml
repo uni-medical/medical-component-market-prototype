@@ -3,7 +3,7 @@ name: Deploy component market prototype
 on:
   push:
     branches:
-      - feature/skill-catalog-web-prototype
+      - main
   workflow_dispatch:
 
 concurrency:
