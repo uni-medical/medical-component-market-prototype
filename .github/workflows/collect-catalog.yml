@@ -1,0 +1,60 @@
+# LOCKED: false
+
+name: Refresh medical AI component catalog
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+      timezone: "Asia/Shanghai"
+  workflow_dispatch:
+
+concurrency:
+  group: medical-ai-catalog-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONPATH: src
+      TARGET_BRANCH: automation/github-medical-collector
+    steps:
+      - name: Check out the automation branch
+        uses: actions/checkout@v4
+        with:
+          ref: automation/github-medical-collector
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run offline tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Collect GitHub repositories and regenerate README
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          python3 -m github_medical_collector
+          --request-delay-seconds 2.2
+          --max-results-per-query 25
+
+      - name: Commit catalog changes to the automation branch
+        shell: bash
+        run: |
+          if git diff --quiet -- README.md runs/results/catalog.json; then
+            echo "Catalog is unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md runs/results/catalog.json
+          git commit -m "chore: refresh medical AI component catalog"
+          git push origin "HEAD:${TARGET_BRANCH}"

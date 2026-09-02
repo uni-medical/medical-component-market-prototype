@@ -1,0 +1,11 @@
+{
+  "_locked": false,
+  "entries": [
+    {
+      "full_name": "wade20250715/dsh-pubmed",
+      "category": "Plugin",
+      "description_override": "PubMed and NCBI tool bundle for literature search, author disambiguation, institution statistics, mentor matching, and retraction checks.",
+      "manual_note": "Existing source-reviewed DSH bundle retained as a curated seed."
+    }
+  ]
+}

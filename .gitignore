@@ -1,0 +1,16 @@
+# LOCKED: false
+
+.DS_Store
+node_modules/
+.next/
+web/out/
+.vercel/
+web/next-env.d.ts
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+__pycache__/
+*.py[cod]
+.env
+.env.*

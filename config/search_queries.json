@@ -1,0 +1,88 @@
+{
+  "_locked": false,
+  "categories": [
+    "Plugin",
+    "Skill",
+    "Tool",
+    "MCP Server",
+    "CLI"
+  ],
+  "minimum_stars": 100,
+  "queries": [
+    {
+      "category": "Plugin",
+      "scope": "general",
+      "query": "\"deepseek harness\" plugin in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Plugin",
+      "scope": "general",
+      "query": "dsh plugin in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Plugin",
+      "scope": "medical",
+      "query": "medical plugin in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Plugin",
+      "scope": "general",
+      "query": "\"agent plugin\" in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Skill",
+      "scope": "medical",
+      "query": "medical agent skill in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Skill",
+      "scope": "general",
+      "query": "\"agent skill\" in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Tool",
+      "scope": "medical",
+      "query": "medical agent tool in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Tool",
+      "scope": "general",
+      "query": "\"agent tool\" in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Tool",
+      "scope": "general",
+      "query": "\"function calling\" agent in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Tool",
+      "scope": "general",
+      "query": "\"deep research\" agent in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "Tool",
+      "scope": "general",
+      "query": "\"autonomous research\" agent in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "MCP Server",
+      "scope": "medical",
+      "query": "medical MCP server in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "MCP Server",
+      "scope": "general",
+      "query": "\"MCP server\" agent in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "CLI",
+      "scope": "medical",
+      "query": "bioinformatics CLI in:name,description stars:>=100 archived:false"
+    },
+    {
+      "category": "CLI",
+      "scope": "general",
+      "query": "agent CLI in:name,description stars:>=100 archived:false"
+    }
+  ]
+}

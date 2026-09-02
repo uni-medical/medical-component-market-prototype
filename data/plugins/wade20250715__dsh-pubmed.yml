@@ -1,0 +1,15 @@
+url: https://github.com/wade20250715/dsh-pubmed
+name: wade20250715/dsh-pubmed
+category: literature-evidence
+description:
+  en: PubMed and NCBI tool bundle for literature search, author disambiguation, institution statistics, mentor matching, and retraction checks.
+  zh: 面向 PubMed 与 NCBI 的工具 bundle，提供文献检索、作者消歧、机构统计、师承匹配与撤稿核查。
+verification:
+  status: source-reviewed
+  checked_at: '2026-08-19'
+  runtime_tested: false
+  evidence:
+    - package.json declares dsh.bundle.patch.
+    - cordis.patch.yml mounts the dsh-pubmed module.
+    - The module exports apply(ctx) and registers seven tools on ctx.tools.
+    - Runtime network requests are limited in source to eutils.ncbi.nlm.nih.gov; no filesystem, environment-variable, credential, or telemetry access was observed.
