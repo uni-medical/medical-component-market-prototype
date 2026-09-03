@@ -41,7 +41,9 @@ export async function generateMetadata({ params }: ConceptPageProps): Promise<Me
   const concept = getConceptById(conceptSlug);
   if (!concept) return {};
   const seo = CONCEPT_SEO_COPY[lang][concept.id];
-  return { title: seo.title, description: seo.description };
+  return concept.id === "ecosystem-showcase"
+    ? { title: seo.title, description: seo.description, other: { "theme-color": "#0a0a0a" } }
+    : { title: seo.title, description: seo.description };
 }
 
 export default async function ConceptPage({ params }: ConceptPageProps) {
@@ -62,7 +64,7 @@ export default async function ConceptPage({ params }: ConceptPageProps) {
       );
     case "ecosystem-showcase":
       return (
-        <ConceptFrame dictionary={dictionary} locale={lang} conceptSlug={concept.id} conceptLabel={lang === "zh" ? "方案 03 · 生态展示市场" : "Concept 03 · Ecosystem Showcase"}>
+        <ConceptFrame variant="ecosystem" dictionary={dictionary} locale={lang} conceptSlug={concept.id} conceptLabel={lang === "zh" ? "方案 03 · 生态展示市场" : "Concept 03 · Ecosystem Showcase"}>
           <EcosystemShowcase catalog={catalog} locale={lang} />
         </ConceptFrame>
       );

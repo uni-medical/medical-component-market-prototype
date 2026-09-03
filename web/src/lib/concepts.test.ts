@@ -5,6 +5,9 @@ import {
   deriveDomainSignals,
   getCatalogMetadataCoverage,
   getConceptById,
+  getEcosystemSummary,
+  getMedicalFirstDomainSignals,
+  getMedicalFeaturedEntries,
   getMetadataCoverage,
   getRepresentativeEntries,
 } from "@/lib/concepts";
@@ -82,5 +85,45 @@ describe("frontend concept selection contract", () => {
     expect(selected).toHaveLength(3);
     expect(selected.every((entry) => catalog.entries.some((candidate) => candidate.id === entry.id))).toBe(true);
     expect(getRepresentativeEntries(catalog.entries, 0)).toEqual([]);
+  });
+
+  it("derives ecosystem summary figures from the fixture", () => {
+    const catalog = parseCatalogIndex(rawCatalog);
+    expect(getEcosystemSummary(catalog.entries)).toMatchObject({
+      total: 20,
+      medical: 9,
+      general: 13,
+      stable: 10,
+      candidate: 10,
+      tierCount: 2,
+      categoryCount: 5,
+    });
+  });
+
+  it("selects one medical-first featured entry for every component type", () => {
+    const catalog = parseCatalogIndex(rawCatalog);
+    const featured = getMedicalFeaturedEntries(catalog.entries);
+    expect(featured).toHaveLength(5);
+    expect(new Set(featured.map((entry) => entry.primaryCategory)).size).toBe(5);
+    expect(featured.filter((entry) => entry.domains.includes("medical"))).toHaveLength(5);
+    expect(featured.map((entry) => entry.primaryCategory)).toEqual([
+      "Plugin",
+      "Skill",
+      "Tool",
+      "MCP Server",
+      "CLI",
+    ]);
+  });
+
+  it("keeps the medical domain as the first ecosystem entry point", () => {
+    const catalog = parseCatalogIndex(rawCatalog);
+    expect(getMedicalFirstDomainSignals(catalog.entries)[0]?.id).toBe("medical-research");
+  });
+
+  it("uses stable records before candidate records within a type", () => {
+    const catalog = parseCatalogIndex(rawCatalog);
+    const pluginEntries = catalog.entries.filter((entry) => entry.primaryCategory === "Plugin");
+    const featured = getMedicalFeaturedEntries(pluginEntries);
+    expect(featured[0]?.fullName).toBe("bowang-lab/MedSAMSlicer");
   });
 });

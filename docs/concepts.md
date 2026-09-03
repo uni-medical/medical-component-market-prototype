@@ -28,9 +28,11 @@ This is a domain-first explorer inspired by ontology/resource navigation. Domain
 
 **Question:** How can the market feel like a coherent product ecosystem while keeping every listing traceable?
 
-This is a product-led marketplace skin inspired by the visual logic of ecosystem landing pages: a strong statement, domain signals, featured components, and a clear source boundary. It shows the same component listings and metadata as the registry; it does not install, connect, execute, validate compatibility, or claim that a bundle is a working pipeline.
+This is a product-led marketplace skin inspired by the visual logic of BioDSH’s public ecosystem landing page: a strong statement, domain signals, featured components, and a clear source boundary. The implementation uses our own brand and data; it does not copy BioDSH assets or claims. It shows the same component listings and metadata as the registry; it does not install, connect, execute, validate compatibility, or claim that a bundle is a working pipeline.
 
 **What is unique:** ecosystem framing, domain-to-entry orientation, typographic product hero, and an explicit evidence boundary.
+
+The C-only theme uses a near-black canvas, deep-navy hero gradient, cobalt glow, fine grid, glass panels, and sans-serif display type. Its medical-first record selection covers Plugin, Skill, Tool, MCP Server, and CLI without changing the shared catalog contract. The visual reference is the [BioDSH landing page](http://43.167.193.205/); the public implementation remains a static prototype under our own market identity.
 
 ## Concept D — Composition Studio
 

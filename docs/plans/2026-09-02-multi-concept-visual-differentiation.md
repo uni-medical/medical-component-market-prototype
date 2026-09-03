@@ -8,7 +8,7 @@
 
 **Tech Stack:** Next.js 16, TypeScript, CSS Modules, Lucide, Vitest, Playwright, GitHub Actions static export.
 
-> **Superseded note:** After review, Quality Lab was removed from the primary concept gallery because its review-system semantics did not fit the marketplace-only prototype. The current gallery exposes three concepts; its former metadata ideas are retained only in the methodology/data boundaries.
+> **Superseded note:** After review, Quality Lab was removed from the primary concept gallery because its review-system semantics did not fit the marketplace-only prototype. The current gallery exposes four concepts: Academic Registry, Domain Atlas, Ecosystem Showcase, and Composition Studio. The replacement C view uses a product-led ecosystem skin; former review metadata ideas are retained only in the methodology/data boundaries.
 
 ---
 

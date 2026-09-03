@@ -1,4 +1,4 @@
-import type { CatalogEntry } from "@/lib/catalog";
+import { CATALOG_CATEGORIES, type CatalogEntry } from "@/lib/catalog";
 
 export type ConceptId =
   | "registry"
@@ -145,6 +145,16 @@ export function deriveDomainSignals(entries: CatalogEntry[]): DomainSignal[] {
     .sort((left, right) => right.count - left.count || left.label.localeCompare(right.label));
 }
 
+/** Keep the medical signal visible first on the ecosystem landing surface.
+ * The general atlas retains its count-based ordering; this helper is scoped
+ * to the product-facing ecosystem view and leaves that existing view intact.
+ */
+export function getMedicalFirstDomainSignals(entries: CatalogEntry[], limit = 4): DomainSignal[] {
+  return deriveDomainSignals(entries)
+    .sort((left, right) => Number(right.id === "medical-research") - Number(left.id === "medical-research") || right.count - left.count || left.label.localeCompare(right.label))
+    .slice(0, limit);
+}
+
 export interface MetadataCoverage {
   present: number;
   total: number;
@@ -191,4 +201,66 @@ export function getRepresentativeEntries(entries: CatalogEntry[], limit = 3): Ca
   return [...entries]
     .sort((left, right) => Number(right.domains.includes("medical")) - Number(left.domains.includes("medical")) || right.stars - left.stars)
     .slice(0, limit);
+}
+
+export interface EcosystemSummary {
+  total: number;
+  medical: number;
+  general: number;
+  stable: number;
+  candidate: number;
+  tierCount: number;
+  categoryCount: number;
+  categories: string[];
+}
+
+/**
+ * Derive the small set of figures used by the ecosystem landing surface.
+ * Keeping this calculation here makes it impossible for the visual layer to
+ * drift into hand-written counts when the fixture changes.
+ */
+export function getEcosystemSummary(entries: CatalogEntry[]): EcosystemSummary {
+  const categories = [...new Set(entries.map((entry) => entry.primaryCategory))].sort((left, right) => left.localeCompare(right));
+  const tiers = new Set(entries.map((entry) => entry.tier));
+  return entries.reduce<EcosystemSummary>(
+    (summary, entry) => ({
+      ...summary,
+      total: summary.total + 1,
+      medical: summary.medical + Number(entry.domains.includes("medical")),
+      general: summary.general + Number(entry.domains.includes("general")),
+      stable: summary.stable + Number(entry.tier === "stable"),
+      candidate: summary.candidate + Number(entry.tier === "candidate"),
+    }),
+    { total: 0, medical: 0, general: 0, stable: 0, candidate: 0, tierCount: tiers.size, categoryCount: categories.length, categories },
+  );
+}
+
+/**
+ * Pick one deterministic, medical-first record for each supported component
+ * type. Categories without a medical record fall back to their best source
+ * record so the market still communicates complete type coverage.
+ */
+export function getMedicalFeaturedEntries(entries: CatalogEntry[]): CatalogEntry[] {
+  const rank = (entry: CatalogEntry) => [
+    entry.domains.includes("medical") ? 0 : 1,
+    entry.tier === "stable" ? 0 : 1,
+    -entry.stars,
+    entry.fullName,
+  ] as const;
+  const compare = (left: CatalogEntry, right: CatalogEntry) => {
+    const leftRank = rank(left);
+    const rightRank = rank(right);
+    for (let index = 0; index < leftRank.length; index += 1) {
+      if (leftRank[index] < rightRank[index]) return -1;
+      if (leftRank[index] > rightRank[index]) return 1;
+    }
+    return 0;
+  };
+
+  return CATALOG_CATEGORIES.flatMap((category) => {
+    const candidate = entries
+      .filter((entry) => entry.primaryCategory === category)
+      .sort(compare)[0];
+    return candidate ? [candidate] : [];
+  });
 }

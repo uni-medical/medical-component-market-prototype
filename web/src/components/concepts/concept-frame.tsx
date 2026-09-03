@@ -9,12 +9,13 @@ interface ConceptFrameProps {
   locale: Locale;
   conceptLabel: string;
   conceptSlug: string;
+  variant?: "default" | "ecosystem";
 }
 
-export function ConceptFrame({ children, dictionary, locale, conceptLabel, conceptSlug }: ConceptFrameProps) {
+export function ConceptFrame({ children, dictionary, locale, conceptLabel, conceptSlug, variant = "default" }: ConceptFrameProps) {
   const alternateLocale = locale === "en" ? "zh" : "en";
   return (
-    <div className="page-shell concept-page">
+    <div className={`page-shell concept-page${variant === "ecosystem" ? " concept-page--ecosystem" : ""}`}>
       <SiteHeader
         dictionary={dictionary}
         locale={locale}
