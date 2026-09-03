@@ -44,7 +44,7 @@ export function CatalogShell({ catalog, dictionary, locale, conceptMode = false 
         {conceptMode && (
           <div className="concept-mode-strip site-width">
             <span className="section-kicker">01 · {locale === "zh" ? "学术型登记册" : "Academic Registry"}</span>
-            <Link href={`/${locale}/concepts`}>{locale === "zh" ? "返回方案选型" : "Back to concept gallery"} ↗</Link>
+            <Link href={`/${locale}/concepts`}>{locale === "zh" ? "返回浏览方式" : "Back to browse views"} ↗</Link>
           </div>
         )}
         <section className="hero site-width" aria-labelledby="catalog-title">

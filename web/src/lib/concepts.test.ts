@@ -13,7 +13,7 @@ import {
 } from "@/lib/concepts";
 
 describe("frontend concept selection contract", () => {
-  it("defines four distinct desktop concepts for the meeting ballot", () => {
+  it("defines four distinct product-facing browse views", () => {
     expect(CONCEPT_OPTIONS).toHaveLength(4);
 
     const ids = CONCEPT_OPTIONS.map((concept) => concept.id);

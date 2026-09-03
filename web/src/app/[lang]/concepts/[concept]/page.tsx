@@ -64,7 +64,7 @@ export default async function ConceptPage({ params }: ConceptPageProps) {
       );
     case "ecosystem-showcase":
       return (
-        <ConceptFrame variant="ecosystem" dictionary={dictionary} locale={lang} conceptSlug={concept.id} conceptLabel={lang === "zh" ? "方案 03 · 生态展示市场" : "Concept 03 · Ecosystem Showcase"}>
+        <ConceptFrame variant="ecosystem" footerSource={lang === "zh" ? "面向医疗 AI 组件与研究工具的来源可追溯目录。" : "A source-aware directory for medical AI components and research tools."} dictionary={dictionary} locale={lang} conceptSlug={concept.id} conceptLabel={lang === "zh" ? "生态展示市场" : "Ecosystem Showcase"}>
           <EcosystemShowcase catalog={catalog} locale={lang} />
         </ConceptFrame>
       );

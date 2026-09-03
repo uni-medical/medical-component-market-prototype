@@ -12,13 +12,12 @@ export interface ConceptOption {
   title: string;
   description: string;
   lens: string;
-  stage: "current" | "proposed";
 }
 
 /**
  * The four visual directions intentionally share the same catalog contract.
- * This is a meeting-selection surface, not a claim that all four are shipped
- * products or that the proposed metrics are already evaluated.
+ * This is a navigation contract, not a claim that all four views are shipped
+ * products or that any listing has been evaluated for clinical use.
  */
 export const CONCEPT_OPTIONS: readonly ConceptOption[] = [
   {
@@ -26,36 +25,32 @@ export const CONCEPT_OPTIONS: readonly ConceptOption[] = [
     route: "/concepts/registry",
     title: "Academic Registry",
     description:
-      "A source-aware index for comparing component type, domain scope, license, stars, and repository provenance.",
-    lens: "Taxonomy + provenance",
-    stage: "current",
+      "A structured view for comparing research components and their source context.",
+    lens: "Compare metadata",
   },
   {
     id: "domain-atlas",
     route: "/concepts/domain-atlas",
     title: "Domain Atlas",
     description:
-      "A SkillNet-inspired ontology view that makes high-interest domains and their component coverage visible first.",
-    lens: "Domains + discovery",
-    stage: "proposed",
+      "Explore research areas and the components associated with them.",
+    lens: "Find by domain",
   },
   {
     id: "ecosystem-showcase",
     route: "/concepts/ecosystem-showcase",
     title: "Ecosystem Showcase",
     description:
-      "A product-led marketplace skin that foregrounds domains, featured components, and traceable source context.",
-    lens: "Ecosystem + orientation",
-    stage: "proposed",
+      "A product-style view of domains, capabilities, and traceable component records.",
+    lens: "See the ecosystem",
   },
   {
     id: "composition-studio",
     route: "/concepts/composition-studio",
     title: "Composition Studio",
     description:
-      "A future-facing workspace for assembling reusable components into inspectable packs and research workflows.",
-    lens: "Composition + reuse",
-    stage: "proposed",
+      "A collection-oriented view for organizing reusable components.",
+    lens: "Organize for reuse",
   },
 ] as const;
 

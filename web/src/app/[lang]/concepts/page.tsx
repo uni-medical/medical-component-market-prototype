@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: ConceptsPageProps): Promise<M
   const { lang } = await params;
   if (!isLocale(lang)) return {};
   return {
-    title: lang === "zh" ? "方案选型" : "Concept gallery",
-    description: lang === "zh" ? "四种共用数据底座的桌面端前端原型。" : "Four desktop-first frontend directions on one shared catalog substrate.",
+    title: lang === "zh" ? "浏览方式" : "Browse views",
+    description: lang === "zh" ? "从登记册、研究领域、生态关系和组件集合等入口探索医疗 AI 组件。" : "Explore medical AI components through registry, domain, ecosystem, and collection views.",
   };
 }
 

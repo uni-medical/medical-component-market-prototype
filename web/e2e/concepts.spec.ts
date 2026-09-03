@@ -7,12 +7,12 @@ const concepts = [
   { slug: "composition-studio", marker: /composition studio|future composition|组合|编排/i },
 ];
 
-test("concept hub exposes four distinct marketplace directions and a local ballot", async ({ page }) => {
+test("concept hub presents four product-facing browse views", async ({ page }) => {
   await page.goto("/en/concepts");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(/concept|direction|方案|设计/i);
-  await expect(page.getByRole("radio")).toHaveCount(4);
-  await expect(page.getByText(/local[- ]only|no shared backend|仅本地|不会提交/i)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/Explore components/i);
+  await expect(page.getByRole("radio")).toHaveCount(0);
+  await expect(page.locator("main")).not.toContainText(/shared component index|tomorrow|meeting ballot|local-only|backend|fixture/i);
 
   for (const { slug } of concepts) {
     await expect(page.locator(`a[href^="/en/concepts/${slug}"]`)).toBeVisible();
@@ -24,15 +24,16 @@ for (const { slug, marker } of concepts) {
     await page.goto(`/en/concepts/${slug}`);
     await expect(page).toHaveURL(new RegExp(`/en/concepts/${slug}/?$`));
     await expect(page.getByRole("main")).toContainText(marker);
-    await expect(page.getByText(/prototype|concept preview|原型/i).first()).toBeVisible();
+  await expect(page.getByText(/preview|prototype|concept preview|预览|原型/i).first()).toBeVisible();
   });
 }
 
-test("Chinese concept hub remains available for the meeting", async ({ page }) => {
+test("Chinese concept hub presents product-facing browse views", async ({ page }) => {
   await page.goto("/zh/concepts");
   await expect(page).toHaveURL(/\/zh\/concepts\/?$/);
-  await expect(page.getByRole("radio")).toHaveCount(4);
-  await expect(page.getByText(/本地投票|未连接共享后台/).first()).toBeVisible();
+  await expect(page.getByRole("radio")).toHaveCount(0);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/探索医疗 AI 组件/);
+  await expect(page.locator("main")).not.toContainText(/共用|明天|会议|投票|后台|fixture/i);
 });
 
 test("Chinese concept detail keeps its localized title and route", async ({ page }) => {
@@ -55,7 +56,7 @@ test("ecosystem showcase presents a medical-first market without validation clai
   await page.goto("/en/concepts/ecosystem-showcase/");
   await expect(page.locator(".concept-page--ecosystem")).toBeVisible();
   await expect(page.getByRole("heading", { name: /Every component is a starting point/i })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /A shared market for medical AI research/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /A component market for medical AI research/i })).toBeVisible();
   await expect(page.getByRole("heading", { name: /Five types, one medical-first view/i })).toBeVisible();
   await expect(page.locator('[class*="entryCard"] code')).toHaveText(["Plugin", "Skill", "Tool", "MCP Server", "CLI"]);
   await expect(page.getByRole("main")).not.toContainText(/Quality Lab|Priority review queue|Quality Score|Verified|Downloads/i);

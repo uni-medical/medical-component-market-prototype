@@ -766,7 +766,7 @@
   line-height: 1.65;
 }
 
-.fixtureNote {
+.catalogNote {
   margin: 20px 0 0;
   color: var(--eco-muted);
   font-family: var(--font-mono);
@@ -828,5 +828,5 @@
   .entryBottom { align-items: start; flex-direction: column; }
   .boundary { padding: 18px 16px; }
   .boundary h2 { font-size: 1.28rem; }
-  .fixtureNote { text-align: left; }
+  .catalogNote { text-align: left; }
 }

@@ -1,54 +1,25 @@
-# Four frontend concepts, one component market
+# Medical AI component market
 
-This prototype is a visual study of one shared medical AI component catalog. It is not four datasets, four scoring systems, or four independent backends. Every concept reads the same public-safe fixture and preserves the same entry detail contract.
+Explore medical AI components through four focused views. Each view gives a different way to move from a research need to a repository record, while keeping the information needed for a careful decision close at hand.
 
-## Shared substrate
+The directory surfaces repository name, description, component type, Medical/General scope, source tier, GitHub stars, source, topics, license, language, update time, and repository links. A source tier describes where a record was observed; it is not a medical, safety, compatibility, or verification claim.
 
-Every view can expose the same fields: repository name, description, component type, Medical/General domain, Stable/Candidate tier, GitHub stars, source, topics, license, language, updated/observed time, source snapshot, repository URL, and homepage URL. Stable means the record appears in the reviewed `main` snapshot; Candidate means it appears only in automated discovery. Neither is a medical, safety, compatibility, or verification claim.
+## Academic Registry
 
-The current search and filters are prototype affordances. They do not query GitHub at runtime. The fixture is built at compile time and contains no downloads, hidden relevance queries, private IDs, tokens, or unvalidated quality score.
+Compare component type, repository context, license, stars, and update history in a compact register. This view is suited to careful side-by-side reading.
 
-## Concept A — Academic Registry
+## Domain Atlas
 
-**Question:** What is this component, where did it come from, and how can I compare it with another record?
+Start from a research area and see the components that support it. Domain cards help visitors move from a broad topic to a specific repository.
 
-This is the baseline registry: a dense list with taxonomy, repository metadata, licensing, source snapshots, and entry details. It is the best option when the market should behave like a research resource registry or software dataset.
+## Ecosystem Showcase
 
-**What is unique:** metadata density, provenance-first ordering, explicit Stable/Candidate boundaries, and direct comparison.
+See the market as an ecosystem, with domains, capabilities, and traceable records. Its dark product-page visual language is inspired by the public [BioDSH landing page](http://43.167.193.205/), while the brand, content, and data remain specific to this directory.
 
-## Concept B — Domain Atlas
+## Composition Studio
 
-**Question:** Which research area should I start from, and what component coverage exists there?
+Organize reusable components into research-oriented collections and packs. The view communicates a collection-oriented direction while keeping each component record independently inspectable.
 
-This is a domain-first explorer inspired by ontology/resource navigation. Domain cards are derived from transparent fixture topic rules; their counts mean fixture coverage, not download or usage popularity. The ontology slice maps component types to domain coverage, source maturity, and source tags.
+## Reading a record
 
-**What is unique:** domain navigation rail, atlas/map visual language, domain-colored nodes, and a path from domain → representative entry → entry metadata.
-
-## Concept C — Ecosystem Showcase
-
-**Question:** How can the market feel like a coherent product ecosystem while keeping every listing traceable?
-
-This is a product-led marketplace skin inspired by the visual logic of BioDSH’s public ecosystem landing page: a strong statement, domain signals, featured components, and a clear source boundary. The implementation uses our own brand and data; it does not copy BioDSH assets or claims. It shows the same component listings and metadata as the registry; it does not install, connect, execute, validate compatibility, or claim that a bundle is a working pipeline.
-
-**What is unique:** ecosystem framing, domain-to-entry orientation, typographic product hero, and an explicit evidence boundary.
-
-The C-only theme uses a near-black canvas, deep-navy hero gradient, cobalt glow, fine grid, glass panels, and sans-serif display type. Its medical-first record selection covers Plugin, Skill, Tool, MCP Server, and CLI without changing the shared catalog contract. The visual reference is the [BioDSH landing page](http://43.167.193.205/); the public implementation remains a static prototype under our own market identity.
-
-## Concept D — Composition Studio
-
-**Question:** How might the same listings support future reusable component packs?
-
-This is a collection-oriented marketplace skin. Pack grouping is intentionally described as a future affordance; the current surface remains a familiar listing view.
-
-## How to vote
-
-- Choose **Academic Registry** if precise comparison and provenance are the first priority.
-- Choose **Domain Atlas** if discovery should start from research domains and ontology navigation.
-- Choose **Ecosystem Showcase** if the market should be introduced as a coherent product ecosystem.
-- Choose **Composition Studio** if the long-term product should organize reusable packs while keeping the marketplace familiar.
-
-The meeting ballot is local-only. It records a choice in the current browser and does not submit or aggregate votes.
-
-## What changes after the meeting
-
-The selected concept becomes the primary information architecture. The shared catalog contract remains stable, while the selected view can gain real URL search, related-entry explanations, and a build-time `catalog-index.json` generated by GitHub Actions. A quality score or runtime composition should only be added after its method, evidence, and security boundaries are documented.
+Open a component to see its description, category, domain, source, license, topics, update time, and snapshot context. A listing is an invitation to inspect the source, not an endorsement for clinical use.

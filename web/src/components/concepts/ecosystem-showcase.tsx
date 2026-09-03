@@ -29,13 +29,13 @@ interface EcosystemShowcaseProps {
 
 const copy = {
   en: {
-    eyebrow: "Medical component market · visual prototype",
+    eyebrow: "Medical component market",
     title: "Every component is a starting point. Every record is traceable.",
     intro:
       "A focused catalogue for medical AI research: begin with a domain, compare public metadata, and follow each component back to its source repository.",
     detail:
-      "The market is a static, source-aware prototype. It presents public-safe GitHub metadata without implying installation, execution, or clinical suitability.",
-    prototype: "Prototype",
+      "Explore public component records across medical research, agent infrastructure, and scientific discovery.",
+    prototype: "Preview",
     browse: "Browse medical components",
     methodology: "View methodology",
     snapshot: "Catalog snapshot",
@@ -45,9 +45,9 @@ const copy = {
     stable: "Stable records",
     candidate: "Candidate records",
     publicSnapshots: "public source snapshots",
-    thesisTitle: "A shared market for medical AI research.",
+    thesisTitle: "A component market for medical AI research.",
     thesisBody:
-      "The visual language is product-led; the evidence boundary remains research-oriented. Every view points back to the same catalogue contract.",
+      "Move from discovery to context to source in one focused reading flow.",
     discover: "Discover by domain",
     discoverBody: "Start from a medical research area or adjacent infrastructure signal.",
     compare: "Compare metadata",
@@ -56,10 +56,10 @@ const copy = {
     traceBody: "Open the repository and inspect the snapshot provenance before reuse.",
     domainsKicker: "02 / domain entry points",
     domainsTitle: "Ecosystem domains",
-    domainsBody: "Counts are derived from the 20-record fixture; they describe coverage, not popularity.",
+    domainsBody: "Counts indicate listed records in each area, not popularity or ranking.",
     entriesKicker: "03 / featured records",
     entriesTitle: "Five types, one medical-first view.",
-    entriesBody: "One representative record per component type, selected from the same public metadata index.",
+    entriesBody: "A compact starting set across the five component categories.",
     openEntry: "Open entry",
     openRepository: "Open repository",
     tags: "tags",
@@ -69,16 +69,16 @@ const copy = {
     boundaryTitle: "A market view is not a validation result.",
     boundaryBody:
       "Stable and Candidate describe snapshot provenance only. Neither label implies medical validity, security review, compatibility, or readiness for clinical use.",
-    fixtureNote: "Fixture coverage · no runtime GitHub requests",
+    catalogNote: "Public catalog · source context included",
   },
   zh: {
-    eyebrow: "医疗组件市场 · 视觉原型",
+    eyebrow: "医疗组件市场",
     title: "每个组件都是入口，每条记录都可追溯。",
     intro:
       "面向医疗 AI 研究的聚合目录：从领域开始，比较公开元数据，再沿着来源仓库检查每个组件。",
     detail:
-      "这是一个静态、关注来源的市场原型。页面只呈现可公开的 GitHub 元数据，不暗示安装、执行或临床适用性。",
-    prototype: "原型",
+      "浏览医疗研究、Agent 基础设施与科学发现领域中的公开组件条目。",
+    prototype: "预览",
     browse: "浏览医疗组件",
     methodology: "查看方法说明",
     snapshot: "目录快照",
@@ -88,9 +88,9 @@ const copy = {
     stable: "条稳定记录",
     candidate: "条候选记录",
     publicSnapshots: "公开来源快照",
-    thesisTitle: "面向医疗 AI 研究的共享组件市场。",
+    thesisTitle: "面向医疗 AI 研究的组件市场。",
     thesisBody:
-      "外观采用产品化生态语言，数据边界保持研究型表达。每个视图都回到同一份目录契约。",
+      "沿着发现、上下文和来源，完成一条清晰的浏览路径。",
     discover: "按领域发现",
     discoverBody: "从医疗研究方向或相邻的基础设施信号开始浏览。",
     compare: "比较元数据",
@@ -99,10 +99,10 @@ const copy = {
     traceBody: "打开仓库，在复用前检查来源和快照信息。",
     domainsKicker: "02 / 领域入口",
     domainsTitle: "生态领域入口",
-    domainsBody: "数量由 20 条 fixture 推导，只表示覆盖情况，不表示流行度。",
+    domainsBody: "数量表示各领域当前列出的条目，不表示流行度或排名。",
     entriesKicker: "03 / 代表记录",
     entriesTitle: "五种类型，一套医疗优先视图。",
-    entriesBody: "每种组件类型选择一条代表记录，数据仍来自同一份公开元数据索引。",
+    entriesBody: "覆盖五种组件类型的紧凑起始列表。",
     openEntry: "查看条目",
     openRepository: "打开仓库",
     tags: "标签",
@@ -112,7 +112,7 @@ const copy = {
     boundaryTitle: "市场视图不是验证结论。",
     boundaryBody:
       "稳定层与候选层只描述快照来源，不代表医疗有效性、安全审查、兼容性或临床使用准备度。",
-    fixtureNote: "Fixture 覆盖 · 运行时不访问 GitHub",
+    catalogNote: "公开目录 · 保留来源上下文",
   },
 } as const;
 
@@ -311,7 +311,7 @@ export function EcosystemShowcase({ catalog, locale }: EcosystemShowcaseProps) {
         <div className={styles.boundaryIcon}><ShieldCheck size={22} aria-hidden="true" /></div>
         <div><span className={styles.sectionKicker}>{text.boundaryKicker}</span><h2>{text.boundaryTitle}</h2><p>{text.boundaryBody}</p></div>
       </aside>
-      <p className={styles.fixtureNote}>{text.fixtureNote}</p>
+      <p className={styles.catalogNote}>{text.catalogNote}</p>
     </main>
   );
 }

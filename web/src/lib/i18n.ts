@@ -10,7 +10,7 @@ const dictionaries = {
     navigation: {
       directory: "Directory",
       methodology: "Methodology",
-      concepts: "Concept gallery",
+      concepts: "Browse views",
     },
     labels: {
       trustedDirectory: "Research-oriented component registry",
@@ -129,7 +129,7 @@ const dictionaries = {
     navigation: {
       directory: "目录",
       methodology: "方法与边界",
-      concepts: "方案选型",
+      concepts: "浏览方式",
     },
     labels: {
       trustedDirectory: "面向研究的组件索引",
