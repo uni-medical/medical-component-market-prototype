@@ -5,7 +5,7 @@ import { CatalogShell } from "@/components/catalog-shell";
 import { ConceptFrame } from "@/components/concepts/concept-frame";
 import { CompositionStudio } from "@/components/concepts/composition-studio";
 import { DomainAtlas } from "@/components/concepts/domain-atlas";
-import { QualityLab } from "@/components/concepts/quality-lab";
+import { EcosystemShowcase } from "@/components/concepts/ecosystem-showcase";
 import { parseCatalogIndex } from "@/lib/catalog";
 import { CONCEPT_OPTIONS, getConceptById, type ConceptId } from "@/lib/concepts";
 import { getDictionary, isLocale, LOCALES } from "@/lib/i18n";
@@ -20,13 +20,13 @@ const CONCEPT_SEO_COPY = {
   en: {
     registry: { title: "Academic Registry", description: "A source-aware academic registry for medical AI components." },
     "domain-atlas": { title: "Domain Atlas", description: "A domain-first view of medical AI component coverage." },
-    "quality-lab": { title: "Quality Lab", description: "A transparent review workbench for component metadata and proposed QC dimensions." },
+    "ecosystem-showcase": { title: "Ecosystem Showcase", description: "A product-led marketplace view of medical AI components and their source context." },
     "composition-studio": { title: "Composition Studio", description: "A prototype workspace for composing reusable research components." },
   },
   zh: {
     registry: { title: "学术型登记册", description: "面向医疗 AI 组件的可追溯学术登记视图。" },
     "domain-atlas": { title: "领域图谱", description: "以领域为入口查看医疗 AI 组件覆盖情况。" },
-    "quality-lab": { title: "质控实验台", description: "展示组件元数据与拟议质控维度的透明评审工作区。" },
+    "ecosystem-showcase": { title: "生态展示市场", description: "以产品化生态视角呈现医疗 AI 组件及其来源上下文。" },
     "composition-studio": { title: "组合工作台", description: "用于组合可复用研究组件的桌面端原型。" },
   },
 } as const;
@@ -60,10 +60,10 @@ export default async function ConceptPage({ params }: ConceptPageProps) {
           <DomainAtlas catalog={catalog} locale={lang} />
         </ConceptFrame>
       );
-    case "quality-lab":
+    case "ecosystem-showcase":
       return (
-        <ConceptFrame dictionary={dictionary} locale={lang} conceptSlug={concept.id} conceptLabel={lang === "zh" ? "方案 03 · 质控实验台" : "Concept 03 · Quality Lab"}>
-          <QualityLab catalog={catalog} locale={lang} />
+        <ConceptFrame dictionary={dictionary} locale={lang} conceptSlug={concept.id} conceptLabel={lang === "zh" ? "方案 03 · 生态展示市场" : "Concept 03 · Ecosystem Showcase"}>
+          <EcosystemShowcase catalog={catalog} locale={lang} />
         </ConceptFrame>
       );
     case "composition-studio":

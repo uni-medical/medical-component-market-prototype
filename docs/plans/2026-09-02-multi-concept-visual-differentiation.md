@@ -8,6 +8,8 @@
 
 **Tech Stack:** Next.js 16, TypeScript, CSS Modules, Lucide, Vitest, Playwright, GitHub Actions static export.
 
+> **Superseded note:** After review, Quality Lab was removed from the primary concept gallery because its review-system semantics did not fit the marketplace-only prototype. The current gallery exposes three concepts; its former metadata ideas are retained only in the methodology/data boundaries.
+
 ---
 
 ### Task 1: Document and test concept meaning
@@ -37,4 +39,3 @@ Add a workflow rail, bundle manifest, stage-labeled nodes, connector paths, and 
 ### Task 5: Verify and deploy the standalone repository
 
 Run `npm run verify`, `NEXT_PUBLIC_BASE_PATH=/medical-component-market-prototype npm run build`, and desktop/mobile Playwright. Capture final 1440px screenshots and update the artifact README. From `/Users/junzhin/coding_files/awesome-dsh-med-plugin-feature-skill-catalog-web-prototype`, run `git status --short` and `git push origin main`. Confirm remote SHA and do not touch the organization repository or previous Fork.
-

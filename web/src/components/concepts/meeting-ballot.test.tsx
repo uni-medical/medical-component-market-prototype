@@ -12,7 +12,7 @@ describe("meeting ballot", () => {
       screen.getByText(/no shared backend|not sent|facilitator|不会提交|未连接后台/i),
     ).toBeVisible();
 
-    for (const label of ["Academic Registry", "Domain Atlas", "Quality Lab", "Composition Studio"]) {
+    for (const label of ["Academic Registry", "Domain Atlas", "Ecosystem Showcase", "Composition Studio"]) {
       expect(screen.getByRole("radio", { name: new RegExp(label, "i") })).toBeVisible();
     }
   });
@@ -35,7 +35,6 @@ describe("meeting ballot", () => {
     render(<MeetingBallot locale="zh" />);
 
     expect(screen.getByRole("radio", { name: /领域图谱/ })).toBeVisible();
-    expect(screen.getByRole("radio", { name: /质控实验台/ })).toBeVisible();
     expect(screen.getByText("仅本地投票 · 未连接共享后台")).toBeVisible();
   });
 });

@@ -19,7 +19,7 @@ describe("frontend concept selection contract", () => {
       expect.arrayContaining([
         "registry",
         "domain-atlas",
-        "quality-lab",
+        "ecosystem-showcase",
         "composition-studio",
       ]),
     );
@@ -32,14 +32,13 @@ describe("frontend concept selection contract", () => {
     }
   });
 
-  it("keeps the four concepts meaningfully differentiated", () => {
+  it("keeps the concepts meaningfully differentiated", () => {
     const copy = CONCEPT_OPTIONS.map((concept) =>
       `${concept.title} ${concept.description}`.toLowerCase(),
     );
 
     expect(copy.some((text) => /academic|registry|catalog|目录|索引/.test(text))).toBe(true);
     expect(copy.some((text) => /domain|atlas|ontology|领域|知识/.test(text))).toBe(true);
-    expect(copy.some((text) => /quality|review|rubric|质控|评测/.test(text))).toBe(true);
     expect(copy.some((text) => /composition|studio|bundle|组合|编排/.test(text))).toBe(true);
   });
 

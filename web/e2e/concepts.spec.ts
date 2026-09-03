@@ -3,11 +3,11 @@ import { expect, test } from "@playwright/test";
 const concepts = [
   { slug: "registry", marker: /academic registry|research registry|研究型|学术/i },
   { slug: "domain-atlas", marker: /domain atlas|popular domains|领域/i },
-  { slug: "quality-lab", marker: /quality lab|proposed.*rubric|质控|评测/i },
+  { slug: "ecosystem-showcase", marker: /everything is a component|ecosystem domains|生态展示/i },
   { slug: "composition-studio", marker: /composition studio|future composition|组合|编排/i },
 ];
 
-test("concept hub exposes four distinct desktop directions and a local ballot", async ({ page }) => {
+test("concept hub exposes four distinct marketplace directions and a local ballot", async ({ page }) => {
   await page.goto("/en/concepts");
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(/concept|direction|方案|设计/i);
@@ -45,9 +45,6 @@ test("Chinese concept detail keeps its localized title and route", async ({ page
 });
 
 test("quality and composition concepts explain their marketplace relationship", async ({ page }) => {
-  await page.goto("/en/concepts/quality-lab/");
-  await expect(page.getByRole("main")).toContainText(/marketplace lens|same marketplace records/i);
-  await expect(page.getByRole("main")).not.toContainText(/priority review queue|review queue/i);
   await page.goto("/en/concepts/composition-studio/");
   await expect(page.getByRole("main")).toContainText(/component listings|future pack affordance/i);
   await expect(page.getByRole("main")).toContainText(/8\s*featured listings.*20/i);

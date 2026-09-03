@@ -37,13 +37,13 @@ const conceptLabels = {
   en: {
     registry: { title: "Academic Registry", lens: "Taxonomy + provenance" },
     "domain-atlas": { title: "Domain Atlas", lens: "Domains + discovery" },
-    "quality-lab": { title: "Quality Lab", lens: "Review + methodology" },
+    "ecosystem-showcase": { title: "Ecosystem Showcase", lens: "Ecosystem + orientation" },
     "composition-studio": { title: "Composition Studio", lens: "Composition + reuse" },
   },
   zh: {
     registry: { title: "学术型登记册", lens: "分类 + 溯源" },
     "domain-atlas": { title: "领域图谱", lens: "领域 + 发现" },
-    "quality-lab": { title: "质控实验台", lens: "审阅 + 方法" },
+    "ecosystem-showcase": { title: "生态展示市场", lens: "生态 + 导览" },
     "composition-studio": { title: "组合工作台", lens: "组合 + 复用" },
   },
 } as const;

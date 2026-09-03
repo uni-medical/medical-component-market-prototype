@@ -1655,7 +1655,6 @@ input {
 }
 
 .concept-card--domain-atlas::before { background: #3f7b91; }
-.concept-card--quality-lab::before { background: var(--amber); }
 .concept-card--composition-studio::before { background: #75649c; }
 
 .concept-card:hover {
@@ -1707,7 +1706,6 @@ input {
 }
 
 .concept-card--domain-atlas .concept-card__icon { border-color: rgba(63, 123, 145, 0.3); background: #e4eef1; color: #2e6073; }
-.concept-card--quality-lab .concept-card__icon { border-color: rgba(170, 101, 13, 0.29); background: var(--amber-wash); color: #83520e; }
 .concept-card--composition-studio .concept-card__icon { border-color: rgba(117, 100, 156, 0.27); background: #ece8f3; color: #5a4b80; }
 
 .concept-card h3 {

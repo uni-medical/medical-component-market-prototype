@@ -24,28 +24,26 @@ This is a domain-first explorer inspired by ontology/resource navigation. Domain
 
 **What is unique:** domain navigation rail, atlas/map visual language, domain-colored nodes, and a path from domain → representative entry → entry metadata.
 
-## Concept C — Quality Lab
+## Concept C — Ecosystem Showcase
 
-**Question:** What does a record still need before a human can compare, compose, or adopt it?
+**Question:** How can the market feel like a coherent product ecosystem while keeping every listing traceable?
 
-This is the same marketplace listing view with a review-oriented skin. It separates measurable metadata presence from future evaluation. Metadata coverage counts the presence of nine public fields. Candidate and metadata-gap cues explain what to inspect; they do not create a second ranking system. The proposed rubric names Safety, Completeness, Executability, Maintainability, and Cost-awareness, but every dimension remains `Not evaluated` until a documented protocol and evidence exist.
+This is a product-led marketplace skin inspired by the visual logic of ecosystem landing pages: a strong statement, domain signals, featured components, and a clear source boundary. It shows the same component listings and metadata as the registry; it does not install, connect, execute, validate compatibility, or claim that a bundle is a working pipeline.
 
-**What is unique:** candidate/missing-field cues, a review-oriented listing treatment, a lightweight future rubric note, and an audit-oriented visual language. It remains a marketplace listing view rather than a separate workflow system.
+**What is unique:** ecosystem framing, domain-to-entry orientation, typographic product hero, and an explicit evidence boundary.
 
 ## Concept D — Composition Studio
 
-**Question:** How can the same marketplace listings be presented with a collection-ready visual language?
+**Question:** How might the same listings support future reusable component packs?
 
-This is a collection-oriented marketplace skin. It shows the same component listings and metadata as the registry, with a softer pack-ready visual language. A small future-pack note indicates how collections might be added later; the current surface does not install, connect, execute, validate compatibility, or claim that a bundle is a working pipeline.
-
-**What is unique:** collection treatment, pack-ready metadata emphasis, softer visual hierarchy, and an explicit future-pack boundary.
+This is a collection-oriented marketplace skin. Pack grouping is intentionally described as a future affordance; the current surface remains a familiar listing view.
 
 ## How to vote
 
 - Choose **Academic Registry** if precise comparison and provenance are the first priority.
 - Choose **Domain Atlas** if discovery should start from research domains and ontology navigation.
-- Choose **Quality Lab** if governance, review protocol, and future scoring are the first priority.
-- Choose **Composition Studio** if the long-term product should organize reusable packs and workflows.
+- Choose **Ecosystem Showcase** if the market should be introduced as a coherent product ecosystem.
+- Choose **Composition Studio** if the long-term product should organize reusable packs while keeping the marketplace familiar.
 
 The meeting ballot is local-only. It records a choice in the current browser and does not submit or aggregate votes.
 

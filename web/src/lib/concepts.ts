@@ -3,7 +3,7 @@ import type { CatalogEntry } from "@/lib/catalog";
 export type ConceptId =
   | "registry"
   | "domain-atlas"
-  | "quality-lab"
+  | "ecosystem-showcase"
   | "composition-studio";
 
 export interface ConceptOption {
@@ -40,12 +40,12 @@ export const CONCEPT_OPTIONS: readonly ConceptOption[] = [
     stage: "proposed",
   },
   {
-    id: "quality-lab",
-    route: "/concepts/quality-lab",
-    title: "Quality Lab",
+    id: "ecosystem-showcase",
+    route: "/concepts/ecosystem-showcase",
+    title: "Ecosystem Showcase",
     description:
-      "A research workbench for metadata completeness, review queues, and an explicit future quality-control rubric.",
-    lens: "Review + methodology",
+      "A product-led marketplace skin that foregrounds domains, featured components, and traceable source context.",
+    lens: "Ecosystem + orientation",
     stage: "proposed",
   },
   {
