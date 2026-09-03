@@ -45,7 +45,7 @@ type Copy = {
   dimensions: Array<{ name: string; question: string; signal: string }>;
   coverageTitle: string;
   coverageBody: string;
-  queueReason: string;
+  listingCue: string;
   observed: string;
   fields: string;
   source: string;
@@ -56,16 +56,14 @@ type Copy = {
   mainSnapshot: string;
   automationSnapshot: string;
   fieldLegend: string;
-  emptyQueue: string;
+  emptyListings: string;
   summaryLabel: string;
   reviewKicker: string;
   evaluationKicker: string;
   auditKicker: string;
-  protocolTitle: string;
-  protocolHint: string;
-  protocolSteps: readonly { title: string; detail: string }[];
   triageLabel: string;
   triageStates: readonly string[];
+  marketplaceSkin: string;
 };
 
 const COPY: Record<Locale, Copy> = {
@@ -81,15 +79,15 @@ const COPY: Record<Locale, Copy> = {
     metrics: {
       records: "Records in scope",
       metadata: "Metadata coverage",
-      queued: "Candidate records",
+      queued: "Candidate listings",
       snapshots: "Source snapshots",
     },
-    reviewTitle: "Priority review queue",
+    reviewTitle: "Component listings to review",
     reviewSubtitle:
-      "Candidate records and records with missing public fields are surfaced first; the prototype shows the six highest-priority rows.",
-    rubricTitle: "Proposed QC rubric",
+      "The same marketplace records, with a review-oriented skin. Six visible rows are a sample; coverage points to fields to inspect.",
+    rubricTitle: "Review lens (proposed)",
     rubricSubtitle:
-      "Dimensions are specified now; scoring requires a documented protocol and supporting evidence.",
+      "A future review layer can sit beside the same listings; no quality score is assigned here.",
     proposed: "Proposed",
     notEvaluated: "Not evaluated",
     dimensions: [
@@ -122,7 +120,7 @@ const COPY: Record<Locale, Copy> = {
     coverageTitle: "What metadata coverage means",
     coverageBody:
       "Coverage is the proportion of nine public fields present in the fixture: description, category, domain, topics, homepage, language, license, update time, and source snapshot. Presence is not correctness or quality.",
-    queueReason: "Why it is queued",
+    listingCue: "What to inspect",
     observed: "Observed",
     fields: "public fields",
     source: "Source",
@@ -134,20 +132,14 @@ const COPY: Record<Locale, Copy> = {
     mainSnapshot: "main snapshot",
     automationSnapshot: "automation snapshot",
     fieldLegend: "Derived from fixture fields · no hidden score",
-    emptyQueue: "No candidate records in the current fixture.",
+    emptyListings: "No candidate listings in the current fixture.",
     summaryLabel: "Quality lab summary",
-    reviewKicker: "02 / review queue",
+    reviewKicker: "02 / marketplace listings",
     evaluationKicker: "03 / evaluation design",
     auditKicker: "04 / audit note",
-    protocolTitle: "Review protocol",
-    protocolHint: "A proposed human-in-the-loop sequence, shown before any score exists.",
-    protocolSteps: [
-      { title: "Intake", detail: "Check identity and source" },
-      { title: "Evidence", detail: "Inspect public fields" },
-      { title: "Decision", detail: "Record a review outcome" },
-    ],
-    triageLabel: "Triage lens",
-    triageStates: ["Candidate", "Missing fields", "Stable"],
+    triageLabel: "Listing cues",
+    triageStates: ["Candidate", "Metadata gap", "Stable"],
+    marketplaceSkin: "The same component market, shown with a review-oriented visual skin. These cues describe what to inspect; they do not rank quality.",
   },
   zh: {
     eyebrow: "方案 C · 质控工作台",
@@ -161,15 +153,15 @@ const COPY: Record<Locale, Copy> = {
     metrics: {
       records: "范围内条目",
       metadata: "元数据覆盖",
-      queued: "候选层条目",
+      queued: "候选条目",
       snapshots: "来源快照",
     },
-    reviewTitle: "优先评审队列",
+    reviewTitle: "待审组件条目",
     reviewSubtitle:
-      "候选层条目与缺少公开字段的记录优先展示；原型先显示六条最高优先级记录。",
-    rubricTitle: "拟议质控维度",
+      "与 marketplace 相同的组件记录，只换成审阅型外观。当前展示六条样例，并用覆盖率提示要检查的字段。",
+    rubricTitle: "审阅视角（拟议）",
     rubricSubtitle:
-      "先明确评审维度；正式评分需要公开的方法、规则与证据。",
+      "未来可以在同一批条目旁增加审阅层；本原型不生成质量分数。",
     proposed: "拟议",
     notEvaluated: "尚未评估",
     dimensions: [
@@ -202,7 +194,7 @@ const COPY: Record<Locale, Copy> = {
     coverageTitle: "如何理解元数据覆盖",
     coverageBody:
       "覆盖率是 fixture 中九个公开字段的存在比例：描述、分类、领域、标签、主页、语言、许可证、更新时间和来源快照。有字段不等于内容正确，更不等于质量。",
-    queueReason: "进入队列原因",
+    listingCue: "检查提示",
     observed: "观测",
     fields: "公开字段",
     source: "来源",
@@ -214,20 +206,14 @@ const COPY: Record<Locale, Copy> = {
     mainSnapshot: "main 快照",
     automationSnapshot: "automation 快照",
     fieldLegend: "由 fixture 字段推导 · 不含隐藏分数",
-    emptyQueue: "当前 fixture 中没有候选条目。",
+    emptyListings: "当前 fixture 中没有候选条目。",
     summaryLabel: "质控实验台摘要",
-    reviewKicker: "02 / 评审队列",
+    reviewKicker: "02 / 组件市场条目",
     evaluationKicker: "03 / 评估设计",
     auditKicker: "04 / 审计说明",
-    protocolTitle: "评审协议",
-    protocolHint: "先展示拟议的人工评审流程；正式评分尚未建立。",
-    protocolSteps: [
-      { title: "接收", detail: "核对身份与来源" },
-      { title: "证据", detail: "检查公开字段" },
-      { title: "决定", detail: "记录评审结果" },
-    ],
-    triageLabel: "分流视角",
-    triageStates: ["候选层", "缺少字段", "稳定层"],
+    triageLabel: "条目提示",
+    triageStates: ["候选层", "元数据缺口", "稳定层"],
+    marketplaceSkin: "与同一组件市场共用记录，只换成审阅型外观。这些提示用于说明要检查什么，不用于排序质量。",
   },
 };
 
@@ -262,7 +248,7 @@ function displayName(entry: CatalogEntry): string {
   return entry.fullName.split("/")[1] ?? entry.fullName;
 }
 
-function queueReason(entry: CatalogEntry, copy: Copy, locale: Locale): string {
+function listingCue(entry: CatalogEntry, copy: Copy, locale: Locale): string {
   const coverage = getMetadataCoverage(entry);
   if (entry.tier === "candidate" && coverage.present < coverage.total) {
     return copy.candidate;
@@ -301,7 +287,7 @@ export function QualityLab({ catalog, locale }: QualityLabProps) {
     ? Math.round(coverage.reduce((total, item) => total + item.percentage, 0) / coverage.length)
     : 0;
   const candidates = entries.filter((entry) => entry.tier === "candidate");
-  const reviewQueue = [...entries]
+  const visibleListings = [...entries]
     .sort((left, right) => {
       const tierWeight = Number(right.tier === "candidate") - Number(left.tier === "candidate");
       if (tierWeight !== 0) return tierWeight;
@@ -361,21 +347,9 @@ export function QualityLab({ catalog, locale }: QualityLabProps) {
         />
       </dl>
 
-      <section className={styles.protocolRail} aria-labelledby="review-protocol-title">
-        <div className={styles.protocolIntro}>
-          <span className={styles.kicker}>01 / protocol</span>
-          <h2 id="review-protocol-title">{copy.protocolTitle}</h2>
-          <p>{copy.protocolHint}</p>
-        </div>
-        <ol>
-          {copy.protocolSteps.map((step, index) => (
-            <li key={step.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <div><strong>{step.title}</strong><small>{step.detail}</small></div>
-            </li>
-          ))}
-        </ol>
-        <span className={styles.protocolStatus}>{copy.notEvaluated}</span>
+      <section className={styles.marketplaceNote} aria-label={copy.reviewTitle}>
+        <span className={styles.kicker}>01 / marketplace lens</span>
+        <p>{copy.marketplaceSkin}</p>
       </section>
 
       <section className={styles.dashboard}>
@@ -387,16 +361,16 @@ export function QualityLab({ catalog, locale }: QualityLabProps) {
                 <p>{copy.reviewSubtitle}</p>
                 <div className={styles.triageFilters} aria-label={copy.triageLabel}>
                   <span>{copy.triageLabel}</span>
-                  {copy.triageStates.map((state, index) => <button type="button" key={state} disabled className={index === 0 ? styles.triageActive : ""}>{state}</button>)}
+                  {copy.triageStates.map((state, index) => <span key={state} className={index === 0 ? styles.triageActive : ""}>{state}</span>)}
                 </div>
               </div>
-            <span className={styles.queueCount}>{reviewQueue.length.toString().padStart(2, "0")}</span>
+            <span className={styles.queueCount}>{visibleListings.length.toString().padStart(2, "0")}</span>
           </div>
           <div className={styles.queueList}>
-            {reviewQueue.length === 0 ? (
-              <p className={styles.empty}>{copy.emptyQueue}</p>
+            {visibleListings.length === 0 ? (
+              <p className={styles.empty}>{copy.emptyListings}</p>
             ) : (
-              reviewQueue.map((entry, index) => {
+              visibleListings.map((entry, index) => {
                 const itemCoverage = getMetadataCoverage(entry);
                 const snapshot = entry.snapshot.mainSha ?? entry.snapshot.automationSha ?? "";
                 return (
@@ -429,7 +403,7 @@ export function QualityLab({ catalog, locale }: QualityLabProps) {
                       <div className={styles.coverageBar} aria-label={`${itemCoverage.percentage}% metadata coverage`}>
                         <span style={{ width: `${itemCoverage.percentage}%` }} />
                       </div>
-                      <small>{queueReason(entry, copy, locale)}</small>
+                      <small>{listingCue(entry, copy, locale)}</small>
                     </div>
                   </article>
                 );

@@ -43,3 +43,13 @@ test("Chinese concept detail keeps its localized title and route", async ({ page
     "/en/concepts/domain-atlas/",
   );
 });
+
+test("quality and composition concepts explain their marketplace relationship", async ({ page }) => {
+  await page.goto("/en/concepts/quality-lab/");
+  await expect(page.getByRole("main")).toContainText(/marketplace lens|same marketplace records/i);
+  await expect(page.getByRole("main")).not.toContainText(/priority review queue|review queue/i);
+  await page.goto("/en/concepts/composition-studio/");
+  await expect(page.getByRole("main")).toContainText(/component listings|future pack affordance/i);
+  await expect(page.getByRole("main")).toContainText(/8\s*featured listings.*20/i);
+  await expect(page.getByRole("main")).not.toContainText(/discovery.*analysis.*research output/i);
+});

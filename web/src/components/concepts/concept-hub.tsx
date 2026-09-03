@@ -59,14 +59,14 @@ const localizedConcepts = {
   en: {
     registry: { title: "Academic Registry", description: "A dense, source-aware register for taxonomy, repository metadata, and stable/candidate provenance.", lens: "Taxonomy + provenance", note: "Best for precise comparison" },
     "domain-atlas": { title: "Domain Atlas", description: "A domain-first atlas that surfaces popular research areas and maps them to component coverage.", lens: "Domains + discovery", note: "Best for finding a starting point" },
-    "quality-lab": { title: "Quality Lab", description: "A review workbench that separates measurable metadata coverage from a future, explainable QC rubric.", lens: "Review + methodology", note: "Best for governance discussions" },
-    "composition-studio": { title: "Composition Studio", description: "A forward-looking canvas for grouping components into inspectable packs and research workflows.", lens: "Composition + reuse", note: "Best for future product vision" },
+    "quality-lab": { title: "Quality Lab", description: "A review-oriented marketplace view that adds metadata cues beside the same component listings.", lens: "Review + metadata", note: "Best for governance discussions" },
+    "composition-studio": { title: "Composition Studio", description: "A collection-oriented marketplace skin that keeps listings familiar while leaving pack grouping for later.", lens: "Collection + reuse", note: "Best for future pack discussion" },
   },
   zh: {
     registry: { title: "学术型登记册", description: "密集、可追溯的登记视图，用于比较分类、仓库元数据与稳定/候选溯源。", lens: "分类 + 溯源", note: "适合精确比较" },
     "domain-atlas": { title: "领域图谱", description: "以领域为入口，优先呈现热门研究方向及其组件覆盖情况。", lens: "领域 + 发现", note: "适合找到切入点" },
-    "quality-lab": { title: "质控实验台", description: "将可测的元数据覆盖率与未来可解释的质控量表明确分开。", lens: "审阅 + 方法", note: "适合讨论治理" },
-    "composition-studio": { title: "组合工作台", description: "面向未来的画布，用于把组件组织成可检查的 pack 与研究工作流。", lens: "组合 + 复用", note: "适合讨论产品愿景" },
+    "quality-lab": { title: "质控实验台", description: "在同一批组件条目旁增加元数据提示的审阅型 marketplace 外观。", lens: "审阅 + 元数据", note: "适合讨论治理" },
+    "composition-studio": { title: "组合工作台", description: "偏 collection 的 marketplace 外观，保持条目熟悉，把组件包组合留到后续。", lens: "集合 + 复用", note: "适合讨论组件包愿景" },
   },
 } as const;
 

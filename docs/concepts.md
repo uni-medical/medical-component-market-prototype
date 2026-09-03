@@ -28,17 +28,17 @@ This is a domain-first explorer inspired by ontology/resource navigation. Domain
 
 **Question:** What does a record still need before a human can compare, compose, or adopt it?
 
-This is a review triage workbench. It separates measurable metadata presence from future evaluation. Metadata coverage counts the presence of nine public fields. The proposed rubric names Safety, Completeness, Executability, Maintainability, and Cost-awareness, but every dimension remains `Not evaluated` until a documented protocol and evidence exist.
+This is the same marketplace listing view with a review-oriented skin. It separates measurable metadata presence from future evaluation. Metadata coverage counts the presence of nine public fields. Candidate and metadata-gap cues explain what to inspect; they do not create a second ranking system. The proposed rubric names Safety, Completeness, Executability, Maintainability, and Cost-awareness, but every dimension remains `Not evaluated` until a documented protocol and evidence exist.
 
-**What is unique:** review states, field-gap queue, protocol stages, rubric matrix, and an audit-oriented visual language.
+**What is unique:** candidate/missing-field cues, a review-oriented listing treatment, a lightweight future rubric note, and an audit-oriented visual language. It remains a marketplace listing view rather than a separate workflow system.
 
 ## Concept D — Composition Studio
 
-**Question:** How might reusable components form an inspectable research workflow later?
+**Question:** How can the same marketplace listings be presented with a collection-ready visual language?
 
-This is a future composition canvas. It arranges real records into Discovery → Analysis → Research output and allows local add/remove interaction. The current surface does not install, connect, execute, validate compatibility, or claim that the selected records form a working pipeline.
+This is a collection-oriented marketplace skin. It shows the same component listings and metadata as the registry, with a softer pack-ready visual language. A small future-pack note indicates how collections might be added later; the current surface does not install, connect, execute, validate compatibility, or claim that a bundle is a working pipeline.
 
-**What is unique:** workflow nodes, connectors, bundle manifest, stage semantics, and explicit future-execution boundary.
+**What is unique:** collection treatment, pack-ready metadata emphasis, softer visual hierarchy, and an explicit future-pack boundary.
 
 ## How to vote
 

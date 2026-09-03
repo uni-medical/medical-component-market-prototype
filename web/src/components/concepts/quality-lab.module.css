@@ -640,6 +640,20 @@
   }
 }
 
+.marketplaceNote {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  padding: 13px 16px;
+  border: 1px dashed rgba(24, 44, 49, 0.28);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.52);
+  gap: 16px;
+}
+
+.marketplaceNote .kicker { flex: 0 0 auto; }
+.marketplaceNote p { margin: 0; color: var(--lab-muted); font-size: 0.69rem; line-height: 1.5; }
+
 /* Quality Lab is a review instrument, not another catalog grid. The slate
    field and amber status language visually separate protocol from discovery. */
 .lab {
@@ -678,8 +692,7 @@
 
 .triageFilters { display: flex; flex-wrap: wrap; align-items: center; margin-top: 13px; gap: 5px; }
 .triageFilters > span { margin-right: 3px; color: var(--lab-muted); font-family: var(--font-mono, monospace); font-size: 0.55rem; text-transform: uppercase; }
-.triageFilters button { padding: 4px 7px; border: 1px solid var(--lab-line); border-radius: 999px; background: var(--lab-paper); color: var(--lab-muted); cursor: not-allowed; font-family: var(--font-mono, monospace); font-size: 0.53rem; }
-.triageFilters button:disabled { opacity: 1; }
+.triageFilters span:not(:first-child) { padding: 4px 7px; border: 1px solid var(--lab-line); border-radius: 999px; background: var(--lab-paper); color: var(--lab-muted); font-family: var(--font-mono, monospace); font-size: 0.53rem; }
 .triageFilters .triageActive { border-color: rgba(168, 104, 22, 0.36); background: var(--lab-amber-wash); color: #84540f; }
 
 @media (max-width: 960px) {
