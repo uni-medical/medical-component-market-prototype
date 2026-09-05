@@ -1,0 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
+import { catalog } from "../data/catalog";
+export function HomePage() {
+  const navigate = useNavigate();
+  return <main className="home"><div className="grid" /><nav><Link to="/" className="brand">Medical Component Market</Link><div><Link to="/marketplace">Marketplace</Link><a href="https://github.com/uni-medical/medical-component-market-web-homepage">GitHub</a></div></nav><section className="hero"><div><span className="eyebrow">MEDICAL AI COMPONENT MARKET</span><h1>Every component is a starting point.<br/>Every record is traceable.</h1><p>Explore tools, skills, and interfaces for medical AI research. Begin with a domain, compare public context, and return to the source repository.</p><button onClick={() => navigate("/marketplace")}>Browse the marketplace ↗</button></div><aside className="snapshot"><small>CATALOG</small><strong>{catalog.entries.length}</strong><span>public component records</span><hr/><div><b>5</b> component types</div><div><b>{catalog.entries.filter(e => e.domains.includes("medical")).length}</b> medical records</div></aside></section><section className="pillars"><article><b>01</b><h2>Discover by domain</h2><p>Start with a research area and find the components around it.</p></article><article><b>02</b><h2>Compare metadata</h2><p>Read type, description, stars, license, tags, and update context together.</p></article><article><b>03</b><h2>Trace the source</h2><p>Open the repository and inspect the record before reuse.</p></article></section></main>;
+}
+
