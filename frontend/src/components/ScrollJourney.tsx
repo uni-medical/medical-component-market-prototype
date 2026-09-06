@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type WheelEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type JourneyFrame = {
   keyword: string;
@@ -20,38 +20,49 @@ export function ScrollJourney({ language }: { language: "en" | "zh" }) {
   const [step, setStep] = useState(0);
   const [paused, setPaused] = useState(false);
   const imageBase = `${import.meta.env.BASE_URL}images/journey/`;
-  const progress = useMemo(() => Math.min(step / (frames.length - 1), 1), [step]);
-
-  const onWheel = (event: WheelEvent<HTMLElement>) => {
-    if (Math.abs(event.deltaY) < 8) return;
+  const direction = useRef(1);
+  const gesture = useRef<{ x: number; y: number } | null>(null);
+  const move = (delta: number) => {
     setPaused(true);
-    setStep((current) => Math.max(0, Math.min(frames.length - 1, current + (event.deltaY > 0 ? 1 : -1))));
+    setStep(current => (current + delta + frames.length) % frames.length);
   };
   useEffect(() => {
     if (paused) return;
-    const timer = window.setInterval(() => setStep((current) => (current + 1) % frames.length), 4800);
+    const timer = window.setInterval(() => {
+      if (step === frames.length - 1) direction.current = -1;
+      if (step === 0) direction.current = 1;
+      setStep(step + direction.current);
+    }, 4800);
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, [paused, step]);
 
   return (
-    <section className="journey" aria-labelledby="journey-title" onWheel={onWheel}>
+    <section className="journey" aria-labelledby="journey-title">
       <div className="journey-pin">
         <div className="journey-heading">
           <span className="eyebrow">{language === "en" ? "A MEDICAL RESEARCH PATH" : "医学研究路径"}</span>
           <h2 id="journey-title">{language === "en" ? "From a medical signal to a source." : "从医学信号走向可追溯来源。"}</h2>
-          <p>{language === "en" ? "Scroll to move through the Medical RSI catalogue." : "滚动浏览 Medical RSI 组件目录的工作路径。"}</p>
+          <p>{language === "en" ? "Explore the medical research path. Swipe or use the arrows to browse." : "探索医学研究路径。左右滑动或点击箭头浏览。"}</p>
         </div>
-        <div className="journey-stage" aria-live="polite">
+        <div className="journey-stage" tabIndex={0}
+          aria-label={language === "en" ? "Medical research slides; use left and right arrow keys" : "医学研究轮播；使用左右方向键"}
+          onKeyDown={event => { if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); move(event.key === "ArrowRight" ? 1 : -1); } }}
+          onPointerDown={event => { gesture.current = { x: event.clientX, y: event.clientY }; }}
+          onPointerCancel={() => { gesture.current = null; }}
+          onPointerUp={event => {
+            const start = gesture.current;
+            gesture.current = null;
+            if (!start) return;
+            const dx = event.clientX - start.x;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(event.clientY - start.y)) move(dx < 0 ? 1 : -1);
+          }}>
+          <div className="journey-track" style={{ transform: `translateX(-${step * 100}%)` }}>
           {frames.map((frame, index) => {
-            const distance = index - step;
-            const clamped = Math.max(-1, Math.min(1, distance));
-            const scale = index === step ? 1 + progress * 0.035 : 0.86;
-            const opacity = index === step ? 1 : Math.max(0, 0.18 - Math.abs(clamped) * 0.08);
             return (
               <article
                 className={`journey-frame ${index === step ? "is-active" : ""}`}
                 key={frame.keyword}
-                style={{ backgroundImage: `url(${imageBase}${frame.image})`, transform: `translate3d(0, ${clamped * 26}px, 0) scale(${scale})`, opacity }}
+                style={{ backgroundImage: `url(${imageBase}${frame.image})` }}
                 aria-hidden={index !== step}
               >
                 <div className="journey-frame-scrim" />
@@ -63,9 +74,14 @@ export function ScrollJourney({ language }: { language: "en" | "zh" }) {
               </article>
             );
           })}
+          </div>
         </div>
         <div className="journey-controls">
-          <span>{paused ? (language === "en" ? "Paused · manual control" : "已暂停 · 手动控制") : (language === "en" ? "Auto play · scroll to control" : "自动播放 · 滚动可控制")}</span>
+          <div className="journey-playback">
+            <button onClick={() => move(-1)} aria-label={language === "en" ? "Previous slide" : "上一张"}>←</button>
+            <button onClick={() => setPaused(!paused)}>{paused ? (language === "en" ? "Play" : "播放") : (language === "en" ? "Pause" : "暂停")}</button>
+            <button onClick={() => move(1)} aria-label={language === "en" ? "Next slide" : "下一张"}>→</button>
+          </div>
           <div aria-label="Journey steps">
             {frames.map((frame, index) => (
                 <button key={frame.keyword} type="button" className={index === step ? "is-active" : ""} onClick={() => { setPaused(true); setStep(index); }} aria-label={language === "en" ? `Show ${frame.keyword}` : `显示${frame.keywordZh}`} aria-pressed={index === step}>
