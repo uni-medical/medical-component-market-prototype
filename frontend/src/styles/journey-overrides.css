@@ -1,0 +1,3 @@
+.journey{min-height:100vh}
+.journey-pin{position:relative}
+@media(max-width:800px){.journey{min-height:100vh}}

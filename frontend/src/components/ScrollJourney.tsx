@@ -1,4 +1,4 @@
-import { useMemo, useState, type WheelEvent } from "react";
+import { useEffect, useMemo, useState, type WheelEvent } from "react";
 
 type JourneyFrame = {
   keyword: string;
@@ -18,13 +18,20 @@ const frames: JourneyFrame[] = [
 
 export function ScrollJourney({ language }: { language: "en" | "zh" }) {
   const [step, setStep] = useState(0);
+  const [paused, setPaused] = useState(false);
   const imageBase = `${import.meta.env.BASE_URL}images/journey/`;
   const progress = useMemo(() => Math.min(step / (frames.length - 1), 1), [step]);
 
   const onWheel = (event: WheelEvent<HTMLElement>) => {
     if (Math.abs(event.deltaY) < 8) return;
+    setPaused(true);
     setStep((current) => Math.max(0, Math.min(frames.length - 1, current + (event.deltaY > 0 ? 1 : -1))));
   };
+  useEffect(() => {
+    if (paused) return;
+    const timer = window.setInterval(() => setStep((current) => (current + 1) % frames.length), 4800);
+    return () => window.clearInterval(timer);
+  }, [paused]);
 
   return (
     <section className="journey" aria-labelledby="journey-title" onWheel={onWheel}>
@@ -58,10 +65,10 @@ export function ScrollJourney({ language }: { language: "en" | "zh" }) {
           })}
         </div>
         <div className="journey-controls">
-          <span>{language === "en" ? "Scroll to advance" : "滚动前进"}</span>
+          <span>{paused ? (language === "en" ? "Paused · manual control" : "已暂停 · 手动控制") : (language === "en" ? "Auto play · scroll to control" : "自动播放 · 滚动可控制")}</span>
           <div aria-label="Journey steps">
             {frames.map((frame, index) => (
-                <button key={frame.keyword} type="button" className={index === step ? "is-active" : ""} onClick={() => setStep(index)} aria-label={language === "en" ? `Show ${frame.keyword}` : `显示${frame.keywordZh}`} aria-pressed={index === step}>
+                <button key={frame.keyword} type="button" className={index === step ? "is-active" : ""} onClick={() => { setPaused(true); setStep(index); }} aria-label={language === "en" ? `Show ${frame.keyword}` : `显示${frame.keywordZh}`} aria-pressed={index === step}>
                 <i />
               </button>
             ))}
