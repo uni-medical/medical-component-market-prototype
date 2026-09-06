@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { catalog } from "../src/data/catalog";
 import { filterCatalog } from "../src/utils/filterCatalog";
 import { createStaticCatalogClient } from "../src/api/catalogClient";
+import { getCatalogSummary } from "../src/lib/catalog";
 describe("catalog", () => {
   it("loads exactly the public records and resolves ids with slashes", async () => {
     const client = createStaticCatalogClient(catalog);
@@ -18,5 +19,27 @@ describe("catalog", () => {
     const e = {...catalog.entries[0], description:null, topics:["special-tag"]};
     expect(filterCatalog([e],new URLSearchParams("q=special-tag"))).toHaveLength(1);
     expect(filterCatalog([e],new URLSearchParams("q=Plugin"))).toHaveLength(1);
+  });
+  it("derives the homepage summary from the checked-in snapshot", () => {
+    expect(getCatalogSummary(catalog.entries)).toEqual({
+      total: 20,
+      stable: 10,
+      candidate: 10,
+      medical: 9,
+    });
+    expect(new Set(catalog.entries.map((entry) => entry.primaryCategory))).toHaveLength(5);
+  });
+  it("keeps live-only and evaluative claims out of public records", () => {
+    const prohibitedFields = [
+      "downloads",
+      "qualityScore",
+      "verified",
+      "matched_queries",
+      "relevance_evidence",
+    ];
+    for (const entry of catalog.entries) {
+      expect(entry.repositoryUrl).toMatch(/^https:\/\/github\.com\//);
+      expect(prohibitedFields.some((field) => field in entry)).toBe(false);
+    }
   });
 });

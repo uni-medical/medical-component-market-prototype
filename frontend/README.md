@@ -1,47 +1,39 @@
-# Medical AI Component Market prototype
+# Medical Component Market frontend
 
-A bilingual static market prototype for reusable medical AI plugins, skills, tools, MCP servers, and CLIs.
+This directory contains the Vite + React homepage and marketplace routes deployed by GitHub Pages.
 
-## What this prototype is
+## Current data boundary
 
-- A high-fidelity review surface built from 20 real, public-safe GitHub records.
-- A visual contract for Stable/Candidate provenance, Medical-first discovery, and entry detail pages.
-- A static Vercel-ready app with no runtime GitHub requests and no embedded credentials.
+- The browser reads the checked-in `../data/prototype-catalog.json` snapshot.
+- Search and filters run locally in the browser.
+- The snapshot contains 20 public-safe repository records assembled from the sources recorded in the catalog.
+- Star counts and update timestamps are observations from that snapshot, not live GitHub metrics.
+- Stable means an entry is present in the reviewed `main` snapshot; Candidate means it is present only in the automated discovery snapshot. Neither indicates medical validity, security, compatibility, or quality.
+- The frontend does not call GitHub, CRC-MDT, or a runtime API.
 
-It intentionally does not provide live search, downloads, a quality score, verification badges, user accounts, or a runtime API.
+The doctor-researcher hero is an AI-generated fictional editorial image. It does not depict a real clinician, patient, institution, or clinical result. The RSI Component Market mascot is an original generated mark based only on the friendly rounded-robot mood of the supplied visual reference; the exact wordmark is rendered in HTML.
 
 ## Local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Open `http://localhost:3000/en` or `http://localhost:3000/zh`.
+With the repository base path configured, open:
 
-## Rebuild the fixture
-
-The repository must have both `origin/main` and `origin/automation/github-medical-collector` available locally.
-
-```bash
-npm run data:fixture
+```text
+http://localhost:5173/medical-component-market-web-homepage/
+http://localhost:5173/medical-component-market-web-homepage/marketplace/
 ```
-
-The generator selects 20 representative records, applies the public field whitelist, records both source SHAs, and writes `src/data/prototype-catalog.json`.
 
 ## Verify
 
 ```bash
-npm run verify
-npm run e2e
+npm run lint
+npm run typecheck
+npm run test
+npm run build
 ```
 
-## Preview deployment
-
-After local verification, create a manual Vercel preview without connecting the private GitHub organization repository:
-
-```bash
-npx vercel
-```
-
-Do not deploy production or add a public domain during the prototype review stage.
+Pushing `main` runs `.github/workflows/deploy-pages.yml` and publishes `dist/` to the repository's GitHub Pages site.
